@@ -120,7 +120,7 @@ const hit = await redis.get(`link:${domain}:${key.toLowerCase()}`); // read path
 const cacheKey = createKey({ domain, key }); // ONE normalization function, used by both paths
 ```
 
-Real anchor: the repo centralizes this in `_createKey`/`decodeKey` with per-domain case sensitivity ([cache.ts#L66-L70](../../../apps/web/lib/api/links/cache.ts#L66-L70), [case-sensitivity.ts](../../../apps/web/lib/api/links/case-sensitivity.ts)) — and the comment on the read path explains a subtle exception. Normalization must be a shared function, never inline.
+Real anchor: the repo centralizes this in `_createKey`/`decodeKey` with per-domain case sensitivity ([cache.ts#L66-L70](../../../apps/web/lib/api/links/cache.ts#L66-L70), `case-sensitivity.ts` (filtered from this study export)) — and the comment on the read path explains a subtle exception. Normalization must be a shared function, never inline.
 
 ## Contrast 7: Any-typed boundary
 

@@ -42,6 +42,16 @@ Running record of what was inspected while authoring this curriculum. Anchors in
 
 Re-confirmed via grep/ls after all docs were written: `LINKS_MAX_PAGE_SIZE` at `lib/zod/schemas/links.ts:36`; `lib/axiom/server.ts` exists; `app/api/webhooks/callback/` exists; `get-identity-hash.ts`, `with-prisma-retry.ts`, `lib/folder/permissions.ts`, `lib/webhook/failure.ts`, `get-link-or-throw.ts` all exist at the cited paths. Final tree: 53 markdown files under `fable docs/upskill/` (originally authored as `docs/upskill/`, moved 2026-07-09).
 
+## 2026-10-06 — accuracy pass against the committed snapshot
+
+This pass was first done on the canonical copy (`elirc/masterdub`, commit `64dba44`, whose curriculum files were byte-identical to this one before editing). Its edits were then ported and re-checked against this repository (`elirc/organized-study-dub-monorepo`, snapshot `c999c7e`). Both checks were static: nothing was installed or run.
+
+- The `git remote` row above is stale. This copy lives in its own repository with `dub/` as a plain folder, with no upstream Dub history.
+- `00-fast-track.md` linked one directory too shallow (`../` instead of `../../`), and two `04-code-reading-gym` pages linked one too deep; both are fixed. The relative Markdown links under `fable docs/upskill/` were resolved again in this copy. The only real breaks were three links to `apps/web/lib/api/links/case-sensitivity.ts`, which **this study export filtered out** (repo-root `SECURITY_FILTERED_FILES.md`). Those links are now plain text, and the good-first ticket that edits the file says to use a full checkout. The export also omitted four other files: `lib/api/links/case-sensitivity.ts` is gone, along with `packages/utils/src/constants/integrations.ts`, `apps/web/tests/webhooks/index.test.ts`, `apps/web/scripts/dev/simulate-shopify-webhook.ts` and `apps/web/guides/stripe-payment-links.md`. The curriculum does not cite those four. The fast-track anchors were spot-read here and match: guards at `link.ts` L188/L213/L224/L234, the LRU at `cache.ts` L19-L20, the Bearer branch at `workspace.ts` L105-L111, and seven `publish-*` scripts in the root `package.json`.
+- `apps/web/scripts/generate-openapi.ts` is named by the `generate-openapi` script in `apps/web/package.json` but is **not in this snapshot**; links to it were replaced with plain text.
+- `apps/web/lib/zod/schemas/` holds 65 files (docs said "70+"); corrected.
+- File sizes in the table above have drifted slightly: `process-link.ts` is 591 lines (not "~800+"), `lib/swr/` has 103 files (not "~60 hooks"), `cache.ts` is 195 lines. The other line counts match to within one line.
+
 ## Known uncertainties / not covered
 
 - Anything under `app/(ee)` beyond the files listed (partner programs, payouts, bounties, fraud) was surveyed by directory listing only — depth there is thinner.

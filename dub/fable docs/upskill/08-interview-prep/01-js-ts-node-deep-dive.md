@@ -153,7 +153,7 @@ Round: JS/TS deep-dive / edge cases
 What it's really testing: string handling maturity — most candidates have never thought about it.
 Repo anchor: [lib/middleware/link.ts#L46-L52](../../../apps/web/lib/middleware/link.ts#L46-L52) (`punyEncode`, per-domain case sensitivity)
 Junior answer sounds like: (blank).
-Mid-level answer adds: user-visible keys can contain unicode; storage/lookup needs a canonical ASCII form; case-insensitivity is a *product* decision implemented as lowercase-at-the-edge — with per-domain opt-out ([lib/api/links/case-sensitivity.ts](../../../apps/web/lib/api/links/case-sensitivity.ts)), so normalization must match at write time and read time or links 404.
+Mid-level answer adds: user-visible keys can contain unicode; storage/lookup needs a canonical ASCII form; case-insensitivity is a *product* decision implemented as lowercase-at-the-edge — with per-domain opt-out (`lib/api/links/case-sensitivity.ts`, filtered from this study export), so normalization must match at write time and read time or links 404.
 Senior answer includes: normalization mismatch between write and read paths is a classic incident class (works when created, 404s when clicked); homograph phishing as the security cousin of this topic.
 Likely follow-ups: "Where else do you canonicalize?" (emails, usernames, search).
 Practice drill: explain why `encodeKeyIfCaseSensitive` exists on the *write* path ([create-link.ts#L51-L54](../../../apps/web/lib/api/links/create-link.ts#L51-L54)).

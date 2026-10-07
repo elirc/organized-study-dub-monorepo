@@ -187,7 +187,7 @@ Skills practiced: tracing one concept across write & read paths.
 Story: As a new contributor, I want one comment block explaining that keys are lowercased at redirect time unless the domain is case-sensitive ([link.ts#L46-L52](../../../apps/web/lib/middleware/link.ts#L46-L52)) and correspondingly encoded at write time ([create-link.ts#L51-L54](../../../apps/web/lib/api/links/create-link.ts#L51-L54)).
 Acceptance criteria:
 - [ ] `case-sensitivity.ts` gets a file-header comment stating the invariant: *write-side encoding and read-side normalization must agree, or links 404*.
-Files likely touched: `apps/web/lib/api/links/case-sensitivity.ts`.
+Files likely touched: `apps/web/lib/api/links/case-sensitivity.ts`. (This study export filtered that file out (see `SECURITY_FILTERED_FILES.md` at the repo root). Do this ticket in a full Dub checkout.)
 Interview story potential: unicode/normalization edge-case story (pairs with interview Q12).
 
 ---
